@@ -1,27 +1,27 @@
+import 'dart:math';
+
 class Solution {
   String longestCommonPrefix(List<String> strs) {
-    Map<String, int> prefixMap = {};
+    strs.sort();
     
-    for(int i = 0; i < strs.length; i++) {
-        final String prefix = strs[i][0];
+    final first = strs[0];
+    final last = strs[strs.length - 1];
+    final minLength = min(first.length, last.length);
 
-        if (prefixMap.containsKey(prefix)){
-            prefixMap[prefix] = prefixMap[prefix]! + 1;
-        } else {
-            prefixMap[prefix] = 1;
-        }
+    String prefixResult = "";
+
+    for(int i = 0; i < minLength; i++) {
+        if (first[i] != last[i]) break;
+        else prefixResult += first[i];
     }
 
-    final biggestPrefixMap = prefixMap.entries.reduce(
-        (a, b) => a.value > b.value ? a : b,
-    );
-
-    return biggestPrefixMap.key;
+    return prefixResult;
   }
 }
 
 void main() {
     Solution solution = Solution();
-    String result = solution.longestCommonPrefix(["flower","low","flight"]);
+    // String result = solution.longestCommonPrefix(["alower","blow","clight"]);
+    String result = solution.longestCommonPrefix(["flower","flow","flight"]);
     print(result);
 }
