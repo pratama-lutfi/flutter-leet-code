@@ -1,11 +1,7 @@
 class Solution {
   int removeElement(List<int> nums, int val) {
-    final elementLength = nums.where((n) => n == val).length;
-    print(elementLength);
     nums.removeWhere((n) => n == val);
-    print(nums);
-
-    return elementLength;
+    return nums.length;
   }
 }
 
